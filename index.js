@@ -23,6 +23,11 @@ app.use(loginRouter);
 app.use(jwtverify);
 app.use(registrationRouter);
 
+app.get('/favicon.ico', (req, res) => {
+  // Respond with a 404 status code
+  res.status(404).end();
+});
+
 // Close the database connection when the application exits
 process.on("exit", () => {
   closeDatabaseConnection();

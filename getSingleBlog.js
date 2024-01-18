@@ -5,7 +5,7 @@ const { client } = require("./db");
 
 const getSingleBlogRouter = express.Router();
 
-getSingleBlogRouter.get("/:id", async (req, res) => {
+getSingleBlogRouter.get("/blog/:id", async (req, res) => {
   const blogId = req.params.id;
 
   // Check if blogId is a valid integer
