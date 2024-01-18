@@ -8,6 +8,12 @@ const getSingleBlogRouter = express.Router();
 getSingleBlogRouter.get("/:id", async (req, res) => {
   const blogId = req.params.id;
 
+  // Check if blogId is a valid integer
+  if (!Number.isInteger(parseInt(blogId))) {
+    res.status(400).json({ error: "Invalid blog ID. Must be an integer." });
+    return;
+  }
+
   try {
     const getBlogQuery = "SELECT * FROM blogs WHERE id = $1;";
     const result = await client.query(getBlogQuery, [blogId]);
