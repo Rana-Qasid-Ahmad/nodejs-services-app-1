@@ -25,7 +25,7 @@ app.use(registrationRouter);
 
 app.get('/favicon.ico', (req, res) => {
   // Respond with a 404 status code
-  res.status(404).end();
+  res.status(200).end();
 });
 
 // Close the database connection when the application exits
