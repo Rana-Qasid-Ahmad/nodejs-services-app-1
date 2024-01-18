@@ -4,6 +4,7 @@ const { connectToDatabase, closeDatabaseConnection } = require("./db");
 
 const createBlogRouter = require("./createBlog");
 const getAllBlogsRouter = require("./getAllBlogs");
+const getSingleBlogRouter = require("./getSingleBlog");
 const loginRouter = require("./login");
 const jwtverify = require("./jwttoken");
 const registrationRouter = require("./register");
@@ -17,6 +18,7 @@ connectToDatabase();
 
 app.use(createBlogRouter);
 app.use(getAllBlogsRouter);
+app.use(getSingleBlogRouter);
 app.use(loginRouter);
 app.use(jwtverify);
 app.use(registrationRouter);
