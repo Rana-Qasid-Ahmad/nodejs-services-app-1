@@ -9,7 +9,7 @@ const searchRouter = express.Router();
 searchRouter.get("/search", async (req, res) => {
   try {
     const query = req.query.q; // Assuming the search query is passed as a query parameter
-    const itemsPerPage = parseInt(req.query.itemsPerPage) || 10; // Default to 10 items per page if not provided
+    const itemsPerPage = parseInt(req.query.items) || 10; // Default to 10 items per page if not provided
     const page = parseInt(req.query.page) || 1; // Default to page 1 if not provided
 
     if (!query) {
