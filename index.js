@@ -8,6 +8,7 @@ const getSingleBlogRouter = require("./getSingleBlog");
 const loginRouter = require("./login");
 const jwtverify = require("./jwttoken");
 const registrationRouter = require("./register");
+const searchRouter = require("./blogSearch");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(getSingleBlogRouter);
 app.use(loginRouter);
 app.use(jwtverify);
 app.use(registrationRouter);
+app.use(searchRouter);
 
 app.get('/favicon.ico', (req, res) => {
   // Respond with a 404 status code
