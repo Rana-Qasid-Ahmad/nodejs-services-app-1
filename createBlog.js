@@ -6,8 +6,8 @@ const createBlogRouter = express.Router();
 
 createBlogRouter.post("/create", verifyToken, async (req, res) => {
   try {
-    const { title, content, img, author } = req.body;
-    if (!title || !content || !img || !author) {
+    const { title, description, image, author } = req.body;
+    if (!title || !description || !image || !author) {
       return res.status(400).json({ error: "All fields are required" });
     }
     const published_at = new Date().toISOString();
@@ -19,8 +19,8 @@ createBlogRouter.post("/create", verifyToken, async (req, res) => {
 
     const result = await client.query(createBlogQuery, [
       title,
-      content,
-      img,
+      description,
+      image,
       author,
       published_at,
     ]);
