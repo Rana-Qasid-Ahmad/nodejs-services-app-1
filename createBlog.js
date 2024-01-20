@@ -12,7 +12,7 @@ createBlogRouter.post("/create", verifyToken, async (req, res) => {
     }
     const published_at = new Date().toISOString();
     const createBlogQuery = `
-      INSERT INTO blogs (title, content, img, author,published_at)
+      INSERT INTO blogs (title, description, image, author,published_at)
       VALUES ($1, $2, $3, $4,$5)
       RETURNING *;
     `;
