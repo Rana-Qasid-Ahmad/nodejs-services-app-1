@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors"); // Import the cors middleware
+
 const { connectToDatabase, closeDatabaseConnection } = require("./db");
 
 const createBlogRouter = require("./createBlog");
@@ -12,6 +14,8 @@ const searchRouter = require("./blogSearch");
 
 const app = express();
 
+
+app.use(cors()); // Use cors middleware
 app.use(bodyParser.json());
 
 // Connect to the database when the application starts
