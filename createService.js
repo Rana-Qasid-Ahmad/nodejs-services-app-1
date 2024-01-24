@@ -6,31 +6,28 @@ const createServiceRouter = express.Router();
 
 createServiceRouter.post("/create", verifyToken, async (req, res) => {
   try {
-    const { title, description, image, author } = req.body;
-    if (!title || !description || !image || !author) {
+    const { title, description, image_link} = req.body;
+    if (!title || !description || !image_link) {
       return res.status(400).json({ error: "All fields are required" });
     }
-    const published_at = new Date().toISOString();
-    const createBlogQuery = `
-      INSERT INTO blogs (title, description, image, author,published_at)
-      VALUES ($1, $2, $3, $4,$5)
+    const createServicesQuery = `
+      INSERT INTO services (title, description, Image_link)
+      VALUES ($1, $2, $3)
       RETURNING *;
     `;
 
-    const result = await client.query(createBlogQuery, [
+    const result = await client.query(createServicesQuery, [
       title,
       description,
-      image,
-      author,
-      published_at,
+      image_link
     ]);
 
     res.status(201).json({
-      message: "Blog entry created successfully",
+      message: "Service entry created successfully",
       data: result.rows[0],
     });
   } catch (error) {
-    console.error("Error creating blog entry:", error);
+    console.error("Error creating Service entry:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });

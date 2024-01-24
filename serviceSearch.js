@@ -17,7 +17,7 @@ searchRouter.get("/search", async (req, res) => {
     }
 
     // Count the total number of items for the search query
-    const countQuery = "SELECT COUNT(*) FROM Blogs WHERE content ILIKE $1 OR title ILIKE $1";
+    const countQuery = "SELECT COUNT(*) FROM service WHERE description ILIKE $1 OR title ILIKE $1";
     const totalCountResult = await client.query(countQuery, [`%${query}%`]);
     const totalCount = parseInt(totalCountResult.rows[0].count, 10);
 
@@ -25,11 +25,11 @@ searchRouter.get("/search", async (req, res) => {
     const offset = (page - 1) * itemsPerPage;
 
     // Perform the paginated search based on the query parameter
-    const searchQuery = "SELECT * FROM Blogs WHERE content ILIKE $1 OR title ILIKE $1 OFFSET $2 LIMIT $3";
+    const searchQuery = "SELECT * FROM Services WHERE description ILIKE $1 OR title ILIKE $1 OFFSET $2 LIMIT $3";
     const result = await client.query(searchQuery, [`%${query}%`, offset, itemsPerPage]);
 
     if (result.rows.length === 0) {
-      return res.status(404).json({ error: "No matching blogs found" });
+      return res.status(404).json({ error: "No matching Services found" });
     }
 
     const searchResults = result.rows;

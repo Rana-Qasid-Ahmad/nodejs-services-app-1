@@ -9,18 +9,18 @@ jwtverify.get("/verify", verifyToken, async (req, res) => {
     const userId = req.userId;
     
     const result = await client.query(
-      "SELECT username, email FROM users WHERE Id = $1",
+      "SELECT name, email FROM users_service WHERE Id = $1",
       [userId]
     );
 
     if (result.rows.length > 0) {
-      const { username, email } = result.rows[0];
+      const { name, email } = result.rows[0];
 
       // Send the response with username and email
       res.status(201).json({
         message: "Jwt verified successfully",
         userId: userId,
-        username: username,
+        username: name,
         email: email,
       });
     } else {
