@@ -1,9 +1,9 @@
 const express = require("express");
 const { client } = require("./db");
 
-const getAllBlogsRouter = express.Router();
+const getAllServiceRouter = express.Router();
 
-getAllBlogsRouter.get("/", async (req, res) => {
+getAllServiceRouter.get("/", async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1; // Get the page number from the query parameters, default to page 1 if not provided
     const pageSize = 10; // Number of blogs per page
@@ -31,4 +31,4 @@ getAllBlogsRouter.get("/", async (req, res) => {
   }
 });
 
-module.exports = getAllBlogsRouter;
+module.exports = getAllServiceRouter;

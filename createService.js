@@ -2,9 +2,9 @@ const express = require("express");
 const { client } = require("./db");
 const { verifyToken } = require("./auth");
 
-const createBlogRouter = express.Router();
+const createServiceRouter = express.Router();
 
-createBlogRouter.post("/create", verifyToken, async (req, res) => {
+createServiceRouter.post("/create", verifyToken, async (req, res) => {
   try {
     const { title, description, image, author } = req.body;
     if (!title || !description || !image || !author) {
@@ -35,4 +35,4 @@ createBlogRouter.post("/create", verifyToken, async (req, res) => {
   }
 });
 
-module.exports = createBlogRouter;
+module.exports = createServiceRouter;

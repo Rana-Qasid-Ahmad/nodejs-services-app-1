@@ -4,13 +4,13 @@ const cors = require("cors"); // Import the cors middleware
 
 const { connectToDatabase, closeDatabaseConnection } = require("./db");
 
-const createBlogRouter = require("./createBlog");
-const getAllBlogsRouter = require("./getAllBlogs");
-const getSingleBlogRouter = require("./getSingleBlog");
-const loginRouter = require("./login");
-const jwtverify = require("./jwttoken");
-const registrationRouter = require("./register");
-const searchRouter = require("./blogSearch");
+const createServiceRouter = require("./createService");
+const getAllServiceRouter = require("./getAllServices");
+const getSingleServiceRouter = require("./getSingleService");
+const loginRouter = require("./LoginUser");
+const jwtverify = require("./JWT");
+const registrationRouter = require("./NewUser");
+const searchRouter = require("./ServiceSearch");
 
 const app = express();
 
@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 // Connect to the database when the application starts
 connectToDatabase();
 
-app.use(createBlogRouter);
-app.use(getAllBlogsRouter);
-app.use(getSingleBlogRouter);
+app.use(createServiceRouter);
+app.use(getAllServiceRouter);
+app.use(getSingleServiceRouter);
 app.use(loginRouter);
 app.use(jwtverify);
 app.use(registrationRouter);

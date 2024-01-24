@@ -7,10 +7,10 @@ const registrationRouter = express.Router();
 
 registrationRouter.post("/register", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, password, email } = req.body;
 
     // Check if the username already exists
-    const userExistsQuery = "SELECT * FROM Users WHERE username = $1";
+    const userExistsQuery = "SELECT * FROM users_services WHERE name = $1";
     const userExistsResult = await client.query(userExistsQuery, [username]);
 
     if (userExistsResult.rows.length > 0) {
@@ -21,11 +21,11 @@ registrationRouter.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Insert the new user into the database
-    const insertUserQuery = "INSERT INTO Users (username, password) VALUES ($1, $2) RETURNING id, username";
-    const result = await client.query(insertUserQuery, [username, hashedPassword]);
+    const insertUserQuery = "INSERT INTO users_services (name, password, email) VALUES ($1, $2 , $3) RETURNING id, name, email";
+    const result = await client.query(insertUserQuery, [username, hashedPassword, email]);
 
     const userId = result.rows[0].id;
-    const userEmail = result.rows[0].email;
+    // const userEmail = result.rows[0].email;
 
     // Generate a JWT token
     const token = generateToken(userId);

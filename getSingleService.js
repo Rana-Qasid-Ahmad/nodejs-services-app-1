@@ -3,9 +3,9 @@
 const express = require("express");
 const { client } = require("./db");
 
-const getSingleBlogRouter = express.Router();
+const getSingleServiceRouter = express.Router();
 
-getSingleBlogRouter.get("/blog/:id", async (req, res) => {
+getSingleServiceRouter.get("/blog/:id", async (req, res) => {
   const blogId = req.params.id;
 
   // Check if blogId is a valid integer
@@ -31,4 +31,4 @@ getSingleBlogRouter.get("/blog/:id", async (req, res) => {
   }
 });
 
-module.exports = getSingleBlogRouter;
+module.exports = getSingleServiceRouter;
