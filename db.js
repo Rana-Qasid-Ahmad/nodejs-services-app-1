@@ -1,5 +1,6 @@
 const { Client } = require('pg');
 
+
 const client = new Client({
   user: 'default',
   host: 'ep-polished-voice-12041629-pooler.us-east-1.postgres.vercel-storage.com',
