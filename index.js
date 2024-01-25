@@ -10,7 +10,7 @@ const getSingleServiceRouter = require("./getSingleService");
 const loginRouter = require("./LoginUser");
 const jwtverify = require("./JWT");
 const registrationRouter = require("./NewUser");
-const searchRouter = require("./ServiceSearch");
+const searchRouter = require("./serviceSearch");
 
 const app = express();
 
